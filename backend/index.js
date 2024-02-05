@@ -93,6 +93,6 @@ app.delete('/candidates/:id', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${port}`);
 });
