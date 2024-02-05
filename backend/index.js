@@ -11,12 +11,8 @@ app.use(cors()); // Use cors middleware to handle CORS
 app.use(bodyParser.json());
 
 const pool = new Pool({
-  user: process.env.postgres_user,
-  host: 'localhost',
-  database: process.env.database_name,
-  password: process.env.postgres_password,
-  port: 5432,
-});
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+})
 
 // Login endpoint
 app.post('/login', async (req, res) => {
