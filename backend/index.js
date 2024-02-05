@@ -11,8 +11,12 @@ app.use(cors()); // Use cors middleware to handle CORS
 app.use(bodyParser.json());
 
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-})
+  user: process.env.postgres_user,
+  host: 'localhost',
+  database: process.env.database_name,
+  password: process.env.postgres_password,
+  port: 5432,
+});
 
 // Login endpoint
 app.post('/login', async (req, res) => {
@@ -93,6 +97,6 @@ app.delete('/candidates/:id', async (req, res) => {
 });
 
 // Start the server
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
